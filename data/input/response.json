@@ -1,0 +1,28 @@
+[
+    {
+    "direction": "I",
+    "distance": 1948.575483806973,
+    "epochTime": 1674650956,
+    "latitude": -33.43729782104492,
+    "licensePlate": "LJHX57",
+    "longitude": -70.52730560302734,
+    "realtime": true,
+    "route": "C",
+    "routeId": "C",
+    "timeLabel": "09:49",
+    "tripId": "C-I-L-005"
+    },
+    {
+    "direction": "R",
+    "distance": 1948.575483806973,
+    "epochTime": 1674650956,
+    "latitude": -33.43729782104492,
+    "licensePlate": "LJHA57",
+    "longitude": -70.52730560302734,
+    "realtime": true,
+    "route": "401",
+    "routeId": "401",
+    "timeLabel": "09:49",
+    "tripId": "401-I-L-005"
+    }
+]
