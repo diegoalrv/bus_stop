@@ -1,4 +1,4 @@
-# Bus Stop Repository
+# Visualización para pantallas LED de paradas de bus
 
 Este repositorio contiene los archivos necesarios para ejecutar una aplicación Jupyter Notebook con ciertas bibliotecas de visualización y procesamiento de imágenes.
 
