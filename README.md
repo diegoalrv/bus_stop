@@ -24,6 +24,7 @@ El `Dockerfile` especifica cómo construir una imagen Docker basada en Python 3.
 
 ## requirements.txt
 
+
 ### Descripción
 
 El archivo `requirements.txt` lista las bibliotecas y dependencias que se requieren para la aplicación.
