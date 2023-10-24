@@ -61,76 +61,103 @@ def obtain_min_max_time(remaining_time):
         return 7, 10
     else:
         return 10, remaining_time
+    
+###################################################################
+# Parametros para generar la imagen
+# "direction": "R", Indicador de la dirección en la que va el bus
+# "distance": 1948.575483806973. Distancia en m
+# "licensePlate": "LJHA57", Patente del bus
+# "route": "401", Linea de bus
+# "timeLabel": "09:49", Hora de llegada al paradero
 
-data = load_data()
+# theme: Tema de la pantalla "day/night"
+# 'number_background_color': 'yellow', Color del fondo para el numero
+# 'letter_background_color': 'green', Color del fondo para la letra
 
-distance = approx_km(data)
+def main():
+    # Carga los datos
+    data = load_data()
 
-remaining_time = calc_remaining_time(data)
-min_time, max_time = obtain_min_max_time(remaining_time)
+    # Calcula distancia aproximada en km
+    distance = approx_km(data)
 
-theme = 'day'
+    # Calcula el tiempo restante a la llegada
+    remaining_time = calc_remaining_time(data)
+    # Obtiene valores máximos y mínimo de rangos para desplegar en pantalla
+    min_time, max_time = obtain_min_max_time(remaining_time)
 
-# panel_height, panel_width = 40, 80
-# n_panels = 3
-# height, width = n_panels*panel_height, n_panels*panel_width
+    # Selecciona el tema
+    theme = 'day'
 
-height, width = 120, 240
+    # Alto y ancho de la imagen en pixeles
+    height, width = 120, 240
 
-full_panel = MyDraw(height=height, width=width)
-full_panel.set_theme(theme)
-full_panel.start_draw()
-# full_panel.preview()
+    # Inicia el dibujo y setea el tema
+    full_panel = MyDraw(height=height, width=width)
+    full_panel.set_theme(theme)
+    full_panel.start_draw()
+    # full_panel.preview()
 
-bp = BusPlate()
-plate = data["licensePlate"]
-bp.request_bus_plate(bus_plate=plate)
-bp.generate_image()
-bp.resize_image(target_height=aprox((3/10)*height))
+    # Con el dato de la patente se agrega al dibujo
+    bp = BusPlate()
+    plate = data["licensePlate"]
+    bp.request_bus_plate(bus_plate=plate)
+    bp.generate_image()
+    bp.resize_image(target_height=aprox((3/10)*height))
 
-dist_anmc = DistanceAnnouncement(aprox((2/5)*height), aprox((1/3)*width))
-dist_anmc.set_theme(theme)
-dist_anmc.start_draw()
-# dist_anmc.set_background()
-dist_anmc.set_base_text()
-dist_anmc.set_distance_text(distance=distance)
+    # Agrega la distancia al paradero
+    dist_anmc = DistanceAnnouncement(aprox((2/5)*height), aprox((1/3)*width))
+    dist_anmc.set_theme(theme)
+    dist_anmc.start_draw()
+    # dist_anmc.set_background()
+    dist_anmc.set_base_text()
+    dist_anmc.set_distance_text(distance=distance)
 
-time_anmc = TimeAnnouncement(aprox((2/5)*height), aprox((1/3)*width))
-time_anmc.set_theme(theme)
-time_anmc.start_draw()
-# time_anmc.set_background()
-time_anmc.set_base_text()
-time_anmc.set_min_max_text(min_time=min_time, max_time=max_time)
+    # Agrega el anuncio de los minutos restante al arribo
+    time_anmc = TimeAnnouncement(aprox((2/5)*height), aprox((1/3)*width))
+    time_anmc.set_theme(theme)
+    time_anmc.start_draw()
+    # time_anmc.set_background()
+    time_anmc.set_base_text()
+    time_anmc.set_min_max_text(min_time=min_time, max_time=max_time)
 
-poster = BusPoster(aprox((1/4)*height), aprox((1/4)*width))
-poster.set_theme(theme)
-poster.start_draw()
+    # Genera la imagen de la linea del bus
+    poster = BusPoster(aprox((1/4)*height), aprox((1/4)*width))
+    poster.set_theme(theme)
+    poster.start_draw()
 
-poster_params = {
-    'proportion': 0.6,
-    'width_border': 1,
-    'font_size': 25,
-    'number_background_color': 'yellow',
-    'letter_background_color': 'green',
-}
+    poster_params = {
+        'proportion': 0.6,
+        'width_border': 1,
+        'font_size': 25,
+        'number_background_color': 'yellow',
+        'letter_background_color': 'green',
+    }
 
-poster.set_params(poster_params)
-poster.load_barlow()
-poster.set_colors()
-poster.set_bus_number(bus_number=data["route"])
-poster.set_bus_letter(bus_letter=data["direction"])
+    # Se setean los parametros
+    poster.set_params(poster_params)
+    poster.load_barlow()
+    poster.set_colors()
+    # Se setea la ruta y la direccion en la que va
+    poster.set_bus_number(bus_number=data["route"])
+    poster.set_bus_letter(bus_letter=data["direction"])
 
-bm = BusImage()
-bm.set_theme(theme)
-bm.load_image_from_url()
-bm.crop_image(top_cut=165, bottom_cut=165)
-bm.resize_image(target_width=aprox((1/3)*width))
+    # Se agrega la imagen del bus
+    bm = BusImage()
+    bm.set_theme(theme)
+    bm.load_image_from_url()
+    bm.crop_image(top_cut=165, bottom_cut=165)
+    bm.resize_image(target_width=aprox((1/3)*width))
 
-full_panel.add_image(bp, (aprox(0.5*width), aprox((2/3)*height)))
-full_panel.add_image(dist_anmc, (aprox((3/8)*width), aprox(0.1*height)))
-full_panel.add_image(time_anmc, (aprox((2/3)*width), aprox(0.1*height)))
-full_panel.add_image(poster, (aprox((1/6)*width), aprox((2/3)*height)))
-full_panel.add_image(bm, (aprox(0.02*width),aprox((1/6)*height)))
-full_panel.get_image()
-full_panel.save_image('/app/data/output.png')
+    # Se agregan todas las imagenes al canvas
+    full_panel.add_image(bp, (aprox(0.5*width), aprox((2/3)*height)))
+    full_panel.add_image(dist_anmc, (aprox((3/8)*width), aprox(0.1*height)))
+    full_panel.add_image(time_anmc, (aprox((2/3)*width), aprox(0.1*height)))
+    full_panel.add_image(poster, (aprox((1/6)*width), aprox((2/3)*height)))
+    full_panel.add_image(bm, (aprox(0.02*width),aprox((1/6)*height)))
+    full_panel.get_image()
+    full_panel.save_image('/app/data/output.png')
 
+
+if __name__ == '__main__':
+    main()
