@@ -56,13 +56,14 @@ class TimeAnnouncement(MyDraw):
         else:
             text = f'{min_time} a {max_time} min'
             
-        self.load_barlow(font_size=18)
+        self.load_barlow(font_size=12)
         text_bbox = self.font.getbbox(text)
         font_width, font_height = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
         # print(font_width, font_height)
         offset_width = (np.round((self.width-self.border)) - np.round(font_width))/2
         offset_height = (np.round((self.height-self.border)) - np.round(base_font_height))/2
-        text_position = (offset_width,5+offset_height)
+        # text_position = (offset_width,5+offset_height)
+        text_position = (offset_width,offset_height)
         # text_position = (0, 0)
         self.draw.text(
             text_position,

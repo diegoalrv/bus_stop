@@ -57,7 +57,7 @@ class BusPoster(MyDraw):
         text_bbox = self.font.getbbox(str(bus_letter))
         font_width, font_height = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
         offset_width = np.round((proportion*self.width-width_border)) + 0.75*np.round(font_width/2)
-        text_position = (offset_width,0)
+        text_position = (1.1*offset_width,0)
         self.draw.text(
             text_position,
             bus_letter,
