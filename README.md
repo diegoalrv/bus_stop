@@ -47,5 +47,3 @@ El archivo `requirements.txt` lista las bibliotecas y dependencias que se requie
 `docker run -d --name bus_stop_vis -v /scripts:/app/scripts -p 8888:8888 bus_stop_visualization`
 
 3. Abre un navegador y accede a `http://localhost:8888` para comenzar a usar Jupyter Notebook.
-
-
