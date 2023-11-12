@@ -1,5 +1,4 @@
 matplotlib
-seaborn
-plotly
-opencv-python
-jupyter
+requests
+Pillow
+numpy

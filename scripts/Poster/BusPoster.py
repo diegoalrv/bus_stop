@@ -5,7 +5,7 @@ from PIL import ImageDraw, ImageFont
 from PIL import Image, ImageDraw, ImageFont
 import matplotlib.pyplot as plt
 import numpy as np
-from MyDraw import MyDraw
+from .MyDraw import MyDraw
 
 class BusPoster(MyDraw):
 

@@ -65,7 +65,7 @@ class MyDraw():
     
     def load_barlow(self, font_size=None):
         # Ruta a la fuente TTF personalizada
-        font_path = "/app/data/Barlow-Medium.ttf"
+        font_path = "/app/assets/fonts/Barlow-Medium.ttf"
         # Carga la fuente
         if font_size is None:
             self.font = ImageFont.truetype(font_path, self.prms['font_size'])
