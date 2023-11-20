@@ -9,7 +9,7 @@
 - Cables de Alimentación 4-pin 5V/3A
 - Cables de datos con conexión HUB75
 
-## Configuración inicial de Raspberry Pi 
+## Configuración inicial
 
 ### Conexionado
 
@@ -23,6 +23,8 @@ Para la conexión electrica, cada uno de los paneles LED tiene una entrada de cu
 A continuación, se presenta un diagrama de conexiones, tanto para los datos como para la alimentación. Notar que la referencia (0,0) corresponde a la orientación superior izquierda de las gráficas que se deseen desplegar en el módulo, también se señala la orientación de las entradas y salidas de cada panel en la configuración.
 
 ![conexionModLED](https://github.com/diegoalrv/pantallas-led/assets/148826389/782bac34-8173-4207-a9f7-df2b5422b9ca.png)
+
+### Configuración de Raspberry Pi
 
 
 
