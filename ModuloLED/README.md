@@ -26,5 +26,8 @@ A continuación, se presenta un diagrama de conexiones, tanto para los datos com
 
 ### Configuración de Raspberry Pi
 
+Luego de haber descargado los datos almancenados en este reposotorio. En el directorio ModuloLED, encontrará un script llamado MenuPantalla.sh, en este menú se puede hacer dos acciones en concreto:
+- Configurar parámetros de la implementación, modificando variables del codigo base.
+- Desplegar una imagen a partir de un archivo imagen jpg o png almacenada en el sistema.
 
 
