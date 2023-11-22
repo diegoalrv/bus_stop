@@ -42,9 +42,9 @@ Luego de haber descargado los datos almancenados en este reposotorio. En el dire
   | N° de filas de paneles montados | `options.parallel` | 1 - 3 |
   | N° de columnas de paneles montados | `options.chain_length` | 1 - 3 |
   | Brillo | `options.brightness` | 0 - 100 |
-  | Mapeo GPIO para HAT | `options.hardware_mapping` | `regular`, `adafruit-hat` |
+  | Mapeo GPIO para HAT | `options.hardware_mapping` | `regular`, ver otras opciones [aquí](https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/wiring.md#alternative-hardware-mappings) |
   | Multiplexación | `options.multiplexing` | 1 (por defecto) - 17|
-  | Retardo GPIO | `options.gpio_slowdown` | 1-4 |
+  | Retardo GPIO | `options.gpio_slowdown` | 1 - 4 |
 
   **PANEL: Dado por el fabricante del panel comprado.**
 
