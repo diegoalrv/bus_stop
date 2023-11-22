@@ -50,3 +50,4 @@ Luego de haber descargado los datos almancenados en este reposotorio. En el dire
 
   #### Despliegue de imagenes
 
+  Al seleccionar esta opción, se mostrarán todos los archivos de imagen guardados en el sistema de la Raspberry Pi. Se recomienda utilizar imagenes con la mimsa relacion de aspecto que la resolución de la pantalla montada para el despliegue. De lo contrario, la pantalla tendrá espacios en negro. 
