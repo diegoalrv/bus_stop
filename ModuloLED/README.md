@@ -26,13 +26,27 @@ A continuación, se presenta un diagrama de conexiones, tanto para los datos com
 
 ### Configuración de Raspberry Pi
 
-Luego de haber descargado los datos almancenados en este reposotorio. En el directorio ModuloLED, encontrará un script llamado MenuPantalla.sh, en este menú se puede hacer dos acciones en concreto:
+Luego de haber descargado los datos almancenados en este reposotorio. En el directorio ModuloLED, encontrará un script llamado `MenuPantalla.sh`, en este menú se puede hacer dos acciones en concreto:
 
 - Configurar parámetros de la implementación, modificando variables del codigo base.
 - Desplegar una imagen a partir de un archivo imagen jpg o png almacenada en el sistema.
 
   #### Configuración de Parámetros
 
-  Entre las opciones de configuración para 
+  Entre las opciones de configuración en el codigo base para el funcionamiento del panel se muestran en la siguiente tabla:
 
+  | Parámetro | Variable código base | Rango de valorees |
+  | ------------ | ------------ | ------------ |
+  | N° de filas de pixeles en un panel. | `options.rows` | PANEL |
+  | N° de columnas de pixeles en un panel. | `options.col` | PANEL |
+  | N° de filas de paneles montados | `options.parallel` | 1 - 3 |
+  | N° de columnas de paneles montados | `options.chain_length` | 1 - 3 |
+  | Brillo | `options.brightness` | 0 - 100 |
+  | Mapeo GPIO para HAT | `options.hardware_mapping` | `regular`, `adafruit-hat` |
+  | Multiplexación | `options.multiplexing` | 1 (por defecto) - 17|
+  | Retardo GPIO | `options.gpio_slowdown` | 1-4 |
+
+  **PANEL: Dado por el fabricante del panel comprado.**
+
+  #### Despliegue de imagenes
 
