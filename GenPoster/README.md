@@ -35,3 +35,9 @@ Por el momento esta funcionando con datos de prueba, eventualmente se usará com
 
 ## Acceso a la Imagen Generada
 La imagen del póster se guardará en la carpeta local especificada en el script ```run_container.sh```. Puedes acceder a ella directamente desde esta carpeta en tu máquina local.
+
+## Ejemplo de Imagen Generada
+
+Actualmente se están generando imagenes para alimentar un arreglo de pantallas P4 de 2x1, por lo tanto se ajustaron las dimensiones para esa configuración.
+
+![Ejemplo de Poster](/GenPoster/example/poster.png)
