@@ -12,12 +12,14 @@ cd pantallas-led
 ```
 
 ## Tabla de Contenidos
-1. [Montaje y Funcionamiento de Pantallas](#montaje-y-funcionamiento-de-pantallas)
+1. [Guía de configuración para Modulo LED](#guia-de-configuración-para-modulo-led)
 2. [Generación de Póster de Bus](#generación-de-póster-de-bus)
 3. [Comunicación y Configuración](#comunicación-y-configuración)
 
-## Montaje y Funcionamiento de Pantallas
+## Guía de configuración para Modulo LED
 *Contenido pendiente.*
+Para más detalles, vea el [README](./ModeloLED/README.md).
+
 
 ## Generación de Póster de Bus
 En el directorio raiz del respositorio seguimos los siguientes pasos:
