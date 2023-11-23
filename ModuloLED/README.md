@@ -35,7 +35,7 @@ Luego de haber descargado los datos almancenados en este reposotorio. En el dire
 
   Entre las opciones de configuración en el codigo base para el funcionamiento del panel se muestran en la siguiente tabla:
 
-  | Parámetro | Variable código base | Rango de valorees |
+  | Parámetro | Variable código base | Rango de valores |
   | ------------ | ------------ | ------------ |
   | N° de filas de pixeles en un panel. | `options.rows` | PANEL |
   | N° de columnas de pixeles en un panel. | `options.col` | PANEL |
