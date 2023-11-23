@@ -157,7 +157,7 @@ def main():
     full_panel.add_image(poster2, (aprox((0.05)*width), aprox((0.5)*height)))
     # full_panel.add_image(bm, (aprox(0.02*width),aprox((1/6)*height)))
     full_panel.get_image()
-    full_panel.save_image('/app/data/output/images/poster.png')
+    full_panel.save_image('/app/example/poster.png')
 
 if __name__ == '__main__':
     main()
