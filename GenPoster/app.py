@@ -82,7 +82,8 @@ def main():
     theme = 'day'
 
     # Alto y ancho de la imagen en pixeles
-    height, width = 40, 160
+    # height, width = 40, 160
+    height, width = 200, 800
 
     # Inicia el dibujo y setea el tema
     full_panel = MyDraw(height=height, width=width)
@@ -112,8 +113,9 @@ def main():
 
     bus_announcement_1 = {
         'proportion': 0.6,
-        'width_border': 2,
-        'font_size': 11,
+        'width_border': 3,
+        # 'font_size': 11,
+        'font_size': 80,
         'number_background_color': 'yellow',
         'letter_background_color': 'green',
     }
@@ -133,8 +135,9 @@ def main():
 
     bus_announcement_2 = {
         'proportion': 0.6,
-        'width_border': 2,
-        'font_size': 11,
+        'width_border': 3,
+        # 'font_size': 11,
+        'font_size': 80,
         'number_background_color': 'yellow',
         'letter_background_color': 'blue',
     }
@@ -145,7 +148,7 @@ def main():
     poster2.set_colors()
     # Se setea la ruta y la direccion en la que va
     poster2.set_bus_number(bus_number="16")
-    poster2.set_bus_letter(bus_letter="I")
+    poster2.set_bus_letter(bus_letter="H")
 
     # Se agregan todas las imagenes al canvas
     full_panel.add_image(time_anmc1, (aprox((0.6)*width), aprox(0.05*height)))
