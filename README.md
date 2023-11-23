@@ -18,7 +18,7 @@ cd pantallas-led
 
 ## Guía de configuración para Modulo LED
 *Contenido pendiente.*
-Para más detalles, vea el [README](./ModeloLED/README.md).
+Para más detalles, vea el [README](./ModuloLED/README.md).
 
 
 ## Generación de Póster de Bus
