@@ -17,7 +17,7 @@ cd pantallas-led
 3. [Integración, Comunicación y Configuración](#integración-comunicación-y-configuración)
 4. [Esquema del Proyecto](#esquema-del-proyecto)
 
-## Guía de configuración para Modulo LED(#)
+## Guía de configuración para Modulo LED
 En esta sección encontrarás una guía completa para configurar módulos LED con una Raspberry Pi. Se detalla la lista de materiales necesarios, como la Raspberry Pi y paneles LED P4, y se explica el proceso de conexión tanto de datos como eléctrica. Además, se incluyen instrucciones para configurar la Raspberry Pi, con un enfoque en ajustes como el número de filas y columnas de píxeles, brillo, y mapeo GPIO. Imágenes y diagramas de conexión complementan las instrucciones para facilitar el montaje.
 Para más detalles, vea el [README](./ModuloLED/README.md).
 
