@@ -15,6 +15,7 @@ cd pantallas-led
 1. [Guía de configuración para Modulo LED](#guia-de-configuración-para-modulo-led)
 2. [Generación de Póster de Bus](#generación-de-póster-de-bus)
 3. [Integración, Comunicación y Configuración](#integración-comunicación-y-configuración)
+4. [Esquema del Proyecto](#esquema-del-proyecto)
 
 ## Guía de configuración para Modulo LED
 En esta sección encontrarás una guía completa para configurar módulos LED con una Raspberry Pi. Se detalla la lista de materiales necesarios, como la Raspberry Pi y paneles LED P4, y se explica el proceso de conexión tanto de datos como eléctrica. Además, se incluyen instrucciones para configurar la Raspberry Pi, con un enfoque en ajustes como el número de filas y columnas de píxeles, brillo, y mapeo GPIO. Imágenes y diagramas de conexión complementan las instrucciones para facilitar el montaje.
@@ -26,3 +27,9 @@ Para más detalles, vea el [README](./GenPoster/README.md).
 
 ## Integración, Comunicación y Configuración
 *Contenido pendiente.*
+
+## Esquema de Funcionamiento del Sistema
+
+A continuación se presenta un esquema que ilustra el funcionamiento actual del sistema en el repositorio `pantallas-led`. Este diagrama muestra cómo se relacionan los distintos componentes y archivos del proyecto, desde la clonación del repositorio hasta la ejecución de los scripts específicos en las subcarpetas `ModuloLED` y `GenPoster`.
+
+![Esquema de Funcionamiento del Repositorio pantallas-led](./esquema-repo.png)
