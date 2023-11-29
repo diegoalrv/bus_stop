@@ -50,7 +50,7 @@ Luego de haber descargado los datos almancenados en este reposotorio. En el dire
   
 
   **PANEL: Dado por el fabricante del panel comprado.**
-  *
+  *Se pueden usar valores inferiores a 30 FPS, pero no se recomienda en términos de visibilidad
 
   #### Despliegue de imagenes
 
