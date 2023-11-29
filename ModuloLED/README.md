@@ -45,6 +45,9 @@ Luego de haber descargado los datos almancenados en este reposotorio. En el dire
   | Mapeo GPIO para HAT | `options.hardware_mapping` | `regular`, ver otras opciones [aquí](https://github.com/hzeller/rpi-rgb-led-matrix/blob/master/wiring.md#alternative-hardware-mappings) |
   | Multiplexación | `options.multiplexing` | 1 (por defecto) - 17|
   | Retardo GPIO | `options.gpio_slowdown` | 1 - 5 |
+  | Max. frecuencia de frames [Hz] | `options.limit_refresh_hz` | 30 - 240 (por defecto) |
+  | Bits Resolución PWM | `options.pwm_bits` | 1 - 11 (por defecto) |
+  
 
   **PANEL: Dado por el fabricante del panel comprado.**
 
