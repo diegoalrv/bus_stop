@@ -3,6 +3,22 @@ from scripts.Poster.BusPoster import BusPoster
 from scripts.Poster.TimeAnnouncement import TimeAnnouncement
 import numpy as np
 from datetime import datetime, timedelta
+from PIL import Image
+
+def reescalar_imagen(input_path, output_path, nuevo_ancho, nuevo_alto):
+    try:
+        # Abrir la imagen original
+        imagen = Image.open(input_path)
+
+        # Reescalar la imagen
+        imagen_redimensionada = imagen.resize((nuevo_ancho, nuevo_alto))
+
+        # Guardar la imagen redimensionada en el nuevo archivo
+        imagen_redimensionada.save(output_path)
+        print("Imagen redimensionada y guardada con éxito en", output_path)
+
+    except Exception as e:
+        print("Ocurrió un error:", str(e))
 
 def aprox(n):
     return int(np.round(n))
@@ -157,7 +173,17 @@ def main():
     full_panel.add_image(poster2, (aprox((0.05)*width), aprox((0.5)*height)))
     # full_panel.add_image(bm, (aprox(0.02*width),aprox((1/6)*height)))
     full_panel.get_image()
-    full_panel.save_image('/app/example/poster.png')
+    input_path = f'/app/example/poster_{height}_{width}.png'
+    full_panel.save_image(input_path)
+    # Ejemplo de uso:
+
+    nuevo_alto = 40  # Reemplaza con el alto deseado en píxeles
+    nuevo_ancho = 160  # Reemplaza con el ancho deseado en píxeles
+
+    output_path = f'/app/example/poster_{nuevo_alto}_{nuevo_ancho}.png'
+
+    reescalar_imagen(input_path, output_path, nuevo_ancho, nuevo_alto)
+
 
 if __name__ == '__main__':
     main()
