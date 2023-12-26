@@ -3,6 +3,7 @@ from scripts.Poster.BusPoster import BusPoster
 from scripts.Poster.TimeAnnouncement import TimeAnnouncement
 import numpy as np
 from datetime import datetime, timedelta
+from import_data import export_data
 from PIL import Image
 
 def reescalar_imagen(input_path, output_path, nuevo_ancho, nuevo_alto):
@@ -47,7 +48,7 @@ def approx_km(data):
     return approx_km
 
 def calc_remaining_time(data):
-    arrival_time = data["timeLabel"]
+    arrival_time = data["timeLabel"][:-3]
     target_time = datetime.strptime(arrival_time, "%H:%M").time()
     current_time = datetime.now().time()
 
@@ -87,18 +88,25 @@ def obtain_min_max_time(remaining_time):
 
 def main():
     # Carga los datos
-    data = load_data()
+    #data = load_data()
+    data = export_data()
+    data1 = data[0]
+    data2 = data[1]
+
+    print(data)
 
     # Calcula el tiempo restante a la llegada
-    remaining_time = calc_remaining_time(data)
+    remaining_time1 = calc_remaining_time(data1)
+    remaining_time2 = calc_remaining_time(data2)
     # Obtiene valores máximos y mínimo de rangos para desplegar en pantalla
-    min_time, max_time = obtain_min_max_time(remaining_time)
+    min_time1, max_time1 = obtain_min_max_time(remaining_time1)
+    min_time2, max_time2 = obtain_min_max_time(remaining_time2)
 
     # Selecciona el tema
-    theme = 'day'
+    theme = 'night'
 
     # Alto y ancho de la imagen en pixeles
-    # height, width = 40, 160
+    #height, width = 40, 160
     height, width = 200, 800
 
     # Inicia el dibujo y setea el tema
@@ -112,7 +120,7 @@ def main():
     time_anmc1.start_draw()
     # time_anmc1.set_background()
     # time_anmc1.set_base_text()
-    time_anmc1.set_min_max_text(min_time=min_time, max_time=max_time)
+    time_anmc1.set_min_max_text(min_time=min_time1, max_time=max_time1)
 
     # Agrega el anuncio de los minutos restante al arribo
     time_anmc2 = TimeAnnouncement(aprox((2/5)*height), aprox((1/3)*width))
@@ -120,8 +128,8 @@ def main():
     time_anmc2.start_draw()
     # time_anmc2.set_background()
     # time_anmc2.set_base_text()
-    time_anmc2.set_min_max_text(min_time=3, max_time=5)
-    
+    time_anmc2.set_min_max_text(min_time=min_time2, max_time=max_time2)
+
     # Genera la imagen de la linea del bus
     poster1 = BusPoster(aprox(1.1*(1/3)*height), aprox(1.1*(1/3)*width))
     poster1.set_theme(theme)
@@ -140,9 +148,10 @@ def main():
     poster1.set_params(bus_announcement_1)
     poster1.load_barlow()
     poster1.set_colors()
+
     # Se setea la ruta y la direccion en la que va
-    poster1.set_bus_number(bus_number=data["route"])
-    poster1.set_bus_letter(bus_letter=data["direction"])
+    poster1.set_bus_number(bus_number=data1["route"])
+    poster1.set_bus_letter(bus_letter=data1["direction"])
 
     # Genera la imagen de la linea del bus
     poster2 = BusPoster(aprox(1.1*(1/3)*height), aprox(1.1*(1/3)*width))
@@ -163,27 +172,24 @@ def main():
     poster2.load_barlow()
     poster2.set_colors()
     # Se setea la ruta y la direccion en la que va
-    poster2.set_bus_number(bus_number="16")
-    poster2.set_bus_letter(bus_letter="H")
+    poster2.set_bus_number(bus_number=data2["route"])
+    poster2.set_bus_letter(bus_letter=data2["direction"])
 
     # Se agregan todas las imagenes al canvas
     full_panel.add_image(time_anmc1, (aprox((0.6)*width), aprox(0.05*height)))
     full_panel.add_image(time_anmc2, (aprox((0.6)*width), aprox(0.45*height)))
     full_panel.add_image(poster1, (aprox((0.05)*width), aprox((0.1)*height)))
     full_panel.add_image(poster2, (aprox((0.05)*width), aprox((0.5)*height)))
-    # full_panel.add_image(bm, (aprox(0.02*width),aprox((1/6)*height)))
+    #full_panel.add_image(bm, (aprox(0.02*width),aprox((1/6)*height)))
     full_panel.get_image()
-    input_path = f'/app/example/poster_{height}_{width}.png'
-    full_panel.save_image(input_path)
-    # Ejemplo de uso:
+    full_panel.save_image('/app/example/poster.png')
 
     nuevo_alto = 40  # Reemplaza con el alto deseado en píxeles
     nuevo_ancho = 160  # Reemplaza con el ancho deseado en píxeles
-
+    input_path = f'/app/example/poster.png'
     output_path = f'/app/example/poster_{nuevo_alto}_{nuevo_ancho}.png'
 
     reescalar_imagen(input_path, output_path, nuevo_ancho, nuevo_alto)
-
 
 if __name__ == '__main__':
     main()
