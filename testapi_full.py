@@ -98,6 +98,8 @@ else:
 info = response_getinfodevice.json()
 #print(json.dumps(info, indent=4, ensure_ascii=False, sort_keys=True))
 
+print(info)
+
 print("----------------------------------------------------------")
 print("Cantidad de buses con llegada registrada en este paradero:", len(info["GetInfoDeviceResponse"]["DetalleLineas"]))
 print("----------------------------------------------------------")

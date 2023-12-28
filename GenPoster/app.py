@@ -5,6 +5,7 @@ import numpy as np
 from datetime import datetime, timedelta
 from import_data import export_data
 from PIL import Image
+from getData import Paradero
 
 def reescalar_imagen(input_path, output_path, nuevo_ancho, nuevo_alto):
     try:
@@ -87,9 +88,9 @@ def obtain_min_max_time(remaining_time):
 # 'letter_background_color': 'green', Color del fondo para la letra
 
 def main():
-    # Carga los datos
-    #data = load_data()
-    data = export_data()
+    bus_stop = Paradero()
+
+    data = bus_stop.get_data()
     data1 = data[0]
     data2 = data[1]
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
-import json
+from datetime import datetime, timedelta
 
 
 class Paradero:
@@ -21,6 +21,7 @@ class Paradero:
         # URL de la API para obtener los datos de los recorridos
         self.url_getinfodevice = 'https://transporte.hz.kursor.cl/api/dispositivos/getInfoDevice/'
         self.data = None
+        self.bus_list = []
 
 
     def __get_token(self):
@@ -59,14 +60,32 @@ class Paradero:
             self.data = self.__serialize_data(response)
             return self.data
 
+    def __generate_bus_list(self, info):
+        data_main = []
+        hora_actual = datetime.now().time()
+
+        for i in range(len(info["GetInfoDeviceResponse"]["DetalleLineas"])):
+
+            data = info["GetInfoDeviceResponse"]["DetalleLineas"][i]
+
+            bus_info = {}
+            bus_info["distance"] = data["Llegadas"][0]["DistanciaGPS"] if data["Llegadas"][0]["DistanciaGPS"] is not None else "-"
+            bus_info["timeLabel"] = data["Llegadas"][0]["EstimadaGPS"] if data["Llegadas"][0]["EstimadaGPS"] is not None else "-"
+            bus_info["route"] = data["Descripcion"][:-1] if data["Descripcion"] is not None else "-"
+            bus_info["direction"] = data["Descripcion"][-1] if data["Descripcion"] is not None else "-"
+            bus_info["number_background_color"] = data["colorFondo"]
+            bus_info["letter_background_color"] = data["colorTexto"]
+            bus_info["patente"] = data["Llegadas"][0]["patente"]
+            diff = timedelta(hours = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().hour - hora_actual.hour,minutes = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().minute - hora_actual.minute,seconds=datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().second - hora_actual.second)
+            bus_info["timeRemaining"] = int(abs(diff.total_seconds() // 60))
+            data_main.append(bus_info)
+
+        data_main = sorted(data_main, key=lambda x: x['timeRemaining'])
+        self.bus_list = data_main
+
     def __serialize_data(self, response):
         data = response.json()
-        data = data["GetInfoDeviceResponse"]["DetalleLineas"][0]
+        self.__generate_bus_list(data)
+        data = self.bus_list[:2]
 
-        bus_info = {}
-        bus_info["distance"] = data["Llegadas"][0]["DistanciaGPS"] if data["Llegadas"][0]["DistanciaGPS"] is not None else "-"
-        bus_info["timeLabel"] = data["Llegadas"][0]["EstimadaGPS"][:-3] if data["Llegadas"][0]["EstimadaGPS"] is not None else "-"
-        bus_info["route"] = data["Descripcion"][:-1] if data["Descripcion"] is not None else "-"
-        bus_info["direction"] = data["Descripcion"][-1] if data["Descripcion"] is not None else "-"
-
-        return bus_info
+        return data
