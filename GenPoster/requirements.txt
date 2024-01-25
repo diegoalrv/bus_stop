@@ -2,3 +2,4 @@ matplotlib
 requests
 Pillow
 numpy
+pytz

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
+import pytz
 from datetime import datetime, timedelta
 
 
@@ -62,7 +63,8 @@ class Paradero:
 
     def __generate_bus_list(self, info):
         data_main = []
-        hora_actual = datetime.now().time()
+        zona_horaria_santiago = pytz.timezone('America/Santiago')
+        hora_actual_santiago = datetime.now(zona_horaria_santiago).time()
 
         for i in range(len(info["GetInfoDeviceResponse"]["DetalleLineas"])):
 
@@ -76,12 +78,22 @@ class Paradero:
             bus_info["number_background_color"] = data["colorFondo"]
             bus_info["letter_background_color"] = data["colorTexto"]
             bus_info["patente"] = data["Llegadas"][0]["patente"]
-            diff = timedelta(hours = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().hour - hora_actual.hour,minutes = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().minute - hora_actual.minute,seconds=datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().second - hora_actual.second)
+            bus_hour = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().hour if datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().hour != 0 else 24
+            print(bus_hour, hora_actual_santiago.hour)
+            diff = timedelta(
+                hours = bus_hour - hora_actual_santiago.hour,
+                minutes = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().minute - hora_actual_santiago.minute,
+                seconds=datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().second - hora_actual_santiago.second
+            )
+            print(diff.total_seconds())
             bus_info["timeRemaining"] = int(abs(diff.total_seconds() // 60))
             data_main.append(bus_info)
 
         data_main = sorted(data_main, key=lambda x: x['timeRemaining'])
         self.bus_list = data_main
+
+        for d in data_main:
+            print(d['timeRemaining'], d['timeLabel'])
 
     def __serialize_data(self, response):
         data = response.json()

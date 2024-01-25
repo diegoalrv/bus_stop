@@ -52,7 +52,8 @@ class TimeAnnouncement(MyDraw):
         if (int(max_time) <= 1):
             text = "< 1 min"
         elif (int(min_time) >= 10):
-            text = "> 10 min"
+            print(max_time)
+            text = f"> {max_time} min"
         else:
             text = f'{min_time} a {max_time} min'
             

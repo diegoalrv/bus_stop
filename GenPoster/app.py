@@ -25,22 +25,6 @@ def reescalar_imagen(input_path, output_path, nuevo_ancho, nuevo_alto):
 def aprox(n):
     return int(np.round(n))
 
-def load_data():
-    data = {
-        "direction": "R",
-        "distance": 1948.575483806973,
-        "epochTime": 1674650956,
-        "latitude": -33.43729782104492,
-        "licensePlate": "LJHA57",
-        "longitude": -70.52730560302734,
-        "realtime": True,
-        "route": "401",
-        "routeId": "401",
-        "timeLabel": "09:49",
-        "tripId": "401-I-L-005"
-    }
-    return data
-
 def approx_km(data):
     distance_meters = data["distance"]
     distance_km = distance_meters / 100  # Convert meters to kilometers
@@ -97,8 +81,8 @@ def main():
     print(data)
 
     # Calcula el tiempo restante a la llegada
-    remaining_time1 = calc_remaining_time(data1)
-    remaining_time2 = calc_remaining_time(data2)
+    remaining_time1 = data1['timeRemaining']
+    remaining_time2 = data2['timeRemaining']
     # Obtiene valores máximos y mínimo de rangos para desplegar en pantalla
     min_time1, max_time1 = obtain_min_max_time(remaining_time1)
     min_time2, max_time2 = obtain_min_max_time(remaining_time2)
