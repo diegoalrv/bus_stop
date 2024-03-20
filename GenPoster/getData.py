@@ -12,7 +12,7 @@ class Paradero:
 
         # Autentificación data
         self.url_auth = 'https://transporte.hz.kursor.cl/api/auth/'
-        self.username = "usuario1"
+        self.rut = "11111111-1"
         self.password = "usuario1"
 
         # Token obtenido luego del 'login'
@@ -27,7 +27,7 @@ class Paradero:
 
     def __get_token(self):
         auth = '''{
-            "username": "usuario1",
+            "rut": "11111111-1",
             "password": "usuario1"
         }'''
 
@@ -59,6 +59,7 @@ class Paradero:
             response = requests.post(self.url_getinfodevice, json=data_getinfodevice, headers=headers_getinfodevice)
 
             self.data = self.__serialize_data(response)
+            print(self.data)
             return self.data
 
     def __generate_bus_list(self, info):
@@ -79,21 +80,21 @@ class Paradero:
             bus_info["letter_background_color"] = data["colorTexto"]
             bus_info["patente"] = data["Llegadas"][0]["patente"]
             bus_hour = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().hour if datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().hour != 0 else 24
-            print(bus_hour, hora_actual_santiago.hour)
+            # print(bus_hour, hora_actual_santiago.hour)
             diff = timedelta(
                 hours = bus_hour - hora_actual_santiago.hour,
                 minutes = datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().minute - hora_actual_santiago.minute,
                 seconds=datetime.strptime(bus_info["timeLabel"], "%H:%M:%S").time().second - hora_actual_santiago.second
             )
-            print(diff.total_seconds())
+            # print(diff.total_seconds())
             bus_info["timeRemaining"] = int(abs(diff.total_seconds() // 60))
             data_main.append(bus_info)
 
         data_main = sorted(data_main, key=lambda x: x['timeRemaining'])
         self.bus_list = data_main
 
-        for d in data_main:
-            print(d['timeRemaining'], d['timeLabel'])
+        # for d in data_main:
+        #     print(d['timeRemaining'], d['timeLabel'])
 
     def __serialize_data(self, response):
         data = response.json()
@@ -101,3 +102,8 @@ class Paradero:
         data = self.bus_list[:2]
 
         return data
+    
+
+bus_stop = Paradero()
+
+data = bus_stop.get_data()
