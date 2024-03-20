@@ -2,7 +2,7 @@
 
 Este proyecto genera visualizaciones para pantallas LED en paradas de autobuses, mostrando información como tiempos de llegada y detalles de rutas.
 
-### Paso 1: Clonar el Repositorio
+### Clonar el Repositorio
 
 Para comenzar, clona el repositorio y navega a su directorio:
 
